@@ -28,7 +28,8 @@ $user_info = $Controller->User();
 	<link href="../ui/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
 	<link href="../ui/plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="../ui/assets/css/widgets/modules-widgets.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css" integrity="sha512-H/zVLBHVS8ZRNSR8wrNZrGFpuHDyN6+p6uaADRefLS4yZYRxfF4049g1GhT+gDExFRB5Kf9jeGr8vueDsyBhhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css" integrity="sha512-H/zVLBHVS8ZRNSR8wrNZrGFpuHDyN6+p6uaADRefLS4yZYRxfF4049g1GhT+gDExFRB5Kf9jeGr8vueDsyBhhA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<!-- not confirmed -->
 	<!-- href="https://demofederal.dirtyscripts.shop/ui/ -->
@@ -135,7 +136,7 @@ $user_info = $Controller->User();
  <!--  BEGIN MAIN CONTAINER  -->
 <div class="main-container" id="container">
  	<!-- SIDEBAR -->
- 	<?php include('inc/sidebar.php'); ?>
+ 	<?php include 'inc/sidebar.php'; ?>
 
 	<!--  BEGIN CONTENT PART  -->
 	<div id="content" class="main-content pt-2">
@@ -202,21 +203,21 @@ $user_info = $Controller->User();
 									<!-- <div class="info-detail-2">
 										<p>Loan Balance: </p>
 										<p class="bill-amount text-secondary">
-											<b>$<?php echo number_format($user_info['loan_bal']).'.00'; ?></b>
+											<b>$<?php // echo number_format($user_info['loan_bal']).'.00'; ?></b>
 										</p>
 									</div> --><br>
-									<div class="info-detail-2">
+									<!-- <div class="info-detail-2 d-none">
 										<p>Last Login IP:</p>
 										<p class="bill-amount text-danger">
-											<b><?php echo $Controller->lastSession()['user_ip'] ?></b>
+											<b><?php // echo $Controller->lastSession()['user_ip'] ?></b>
 										</p>
-									</div>
-									<div class="info-detail-2">
+									</div> -->
+									<!-- <div class="info-detail-2">
 										<p>Last Login Date:</p>
 										<p class="bill-amount text-danger">
-											<b><?php echo date('h:i:s d/m/Y', strtotime($Controller->lastSession()['createdat'])); ?></b>
+											<b><?php // echo date('M d, Y', strtotime($Controller->lastSession()['createdat'])); ?></b>
 										</p>
-									</div>
+									</div> -->
 								</div>
 								<div class="inv-action">
 									<a href="./history" class="btn btn-outline-primary view-details">View Details</a>
@@ -232,7 +233,7 @@ $user_info = $Controller->User();
 					<?php
 						if($user_info['transactions'] == 'true') {
 						?>
-					<div class="widget widget-table-one h-100">
+					<div class="widget widget-table-one">
 						<div class="widget-heading">
 							<h5 class="">Transactions</h5>
 							<div class="task-action">
@@ -279,7 +280,7 @@ $user_info = $Controller->User();
 												}
 												?>
 											</h4>
-											<p class="meta-date"><?php echo date('h:i:s d/m/Y', strtotime($value['send_date'])); ?></p>
+											<p class="meta-date"><?php echo date('M d, Y', strtotime($value['send_date'])); ?></p>
 										</div>
 									</div>
 									<div class="t-rate rate-inc">
@@ -305,7 +306,7 @@ $user_info = $Controller->User();
 						<?php
 						}else {
 						?>
-					<div class="widget widget-table-one h-100">
+					<div class="widget widget-table-one">
 						<div class="widget-heading">
 							<h5 class="">Live rates</h5>
 							<!-- <div class="task-action">
@@ -339,8 +340,8 @@ $user_info = $Controller->User();
 							<h5 class="">Recent Activities</h5>
 						</div>
 						<div class="widget-content">
-							<div class="mt-container mx-auto">
-								<div class="timeline-line">
+							<div class="w-100 mx-auto">
+								<div class="timeline-line mb-4">
 									<!-- activity item -->
 									<?php
 									foreach ($Controller->userActivity() as $key => $value) {
@@ -350,7 +351,7 @@ $user_info = $Controller->User();
 										</div>
 										<div class="t-text">
 											<p><?php echo $value['feed']; ?></p>
-											<span class="text-danger"><?php echo date('h:i d/m/Y', strtotime($value['createdat'])); ?></span>
+											<span class="text-danger"><?php echo date('M d, Y', strtotime($value['createdat'])); ?></span>
 										</div>
 									</div>
 										<?php

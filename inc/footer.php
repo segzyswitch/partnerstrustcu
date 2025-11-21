@@ -22,7 +22,7 @@
                 <div class="call">
                   Call us directly
                   <a class="phone" href="tel:+19166108819">(916) 610-8819</a>
-                  <a class="email mb-3" href="mailto:support@partnerstrustcu.com">support@partnerstrustcu.com</a>
+                  <a class="email mb-3 text-lowercase" href="mailto:support@partnerstrustfcu.com">support@partnerstrustfcu.com</a>
                   <a class="email"><i class="fa fa-map-marker"></i> Bakersfield, CA 93304</a>
                 </div>
                 <div id="google_translate_element" style="height:0px!important;">

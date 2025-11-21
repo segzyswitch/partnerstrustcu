@@ -3,15 +3,15 @@ class Controller
 {
   /* online server */
     // private $db_server = 'localhost';
-    // private $db_username = 'partners_db';
-    // private $db_password = 'Primestar1%';
-    // private $db_name = 'partners_online';
+    // private $db_username = 'partner1_main';
+    // private $db_password = 'Primestar1$';
+    // private $db_name = 'partner1_main';
 
   /* local server */
   private $db_server = 'localhost';
   private $db_username = 'root';
   private $db_password = '';
-  private $db_name = 'ptcu';
+  private $db_name = 'ptfcu';
   // DB Connection
   public $conn;
 
@@ -23,7 +23,7 @@ class Controller
       //echo "Connected successfully";
     } catch(PDOException $e) {
       echo "Connection failed: " . $e->getMessage();
-      return false;
+      exit;
     }
   }
 
