@@ -259,24 +259,48 @@ $user_info = $Controller->User();
 							}
 							$count = 1;
 							foreach ($Controller->Transactions() as $key => $value) {
+								$type = '';
+								if ( $value['type'] == 'local' ) {
+									$type = "Transfer";
+								}else if ( $value['type'] == 'self' ) {
+									$type = "Transfer";
+								}else {
+									$type = str_replace('_', ' ', $value['type']);
+								}
 								?>
-							<div class="transactions-list t-info">
+							<a class="transactions-list t-info d-block" href="./receipt?id=<?php echo $value['id']; ?>">
 								<div class="t-item">
 									<div class="t-company-name">
 										<div class="t-icon">
 											<div class="avatar avatar-xl">
-												<span class="avatar-title bg-light">+</span>
+												<?php
+													switch ($value['type']) {
+														case 'debit':
+															echo '<span class="avatar-title bg-light"><i class="bi bi-arrow-up text-danger"></i></span>';
+															break;
+														case 'transfer':
+															echo '<span class="avatar-title bg-light"><i class="bi bi-arrow-up text-danger"></i></span>';
+															break;
+														case 'local':
+															echo '<span class="avatar-title bg-light"><i class="bi bi-arrow-up text-danger"></i></span>';
+															break;
+														case 'international':
+															echo '<span class="avatar-title bg-light"><i class="bi bi-arrow-up text-danger"></i></span>';
+															break;
+														default:
+															echo '<span class="avatar-title bg-light"><i class="bi bi-arrow-down"></i></span>';
+															break;
+													}
+												?>
 											</div>
 										</div>
 										<div class="t-name">
 											<h4 class="text-capitalize">
 												<?php
-												if ( $value['type'] == 'local' ) {
-													echo "Debit";
-												}else if ( $value['type'] == 'self' ) {
-													echo "Transfer";
+												if ( $value['description'] == '' ) {
+													echo $type;
 												}else {
-													echo str_replace('_', ' ', $value['type']);
+													echo $value['description'];
 												}
 												?>
 											</h4>
@@ -295,9 +319,23 @@ $user_info = $Controller->User();
 											}
 											?>
 										</p>
+										<small class="text-right d-block">
+											<?php
+											switch ($value['status']) {
+												case 'pending':
+													echo '<span class="text-warning">pending</span>';
+													break;
+												case 'completed':
+													echo '<span class="text-success">completed</span>';
+													break;
+												default:
+													echo '<span class="text-danger">failed</span>';
+											}
+											?>
+										</small>
 									</div>
 								</div>
-							</div>
+							</a>
 								<?php
 							}
 							?>
@@ -334,7 +372,7 @@ $user_info = $Controller->User();
 					?>
 				</div>
 
-				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing d-none">
 					<div class="widget widget-activity-four">
 						<div class="widget-heading">
 							<h5 class="">Recent Activities</h5>

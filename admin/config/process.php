@@ -88,10 +88,10 @@ if ( isset($_POST["add_account"]) ) {
   $gender = filter_var($_POST["gender"], FILTER_SANITIZE_SPECIAL_CHARS);
   $password = filter_var($_POST["password"], FILTER_SANITIZE_SPECIAL_CHARS);
   $dob = filter_var($_POST["dob"], FILTER_SANITIZE_SPECIAL_CHARS);
-  $str_address = filter_var($_POST["str_address"], FILTER_SANITIZE_SPECIAL_CHARS);
-  $city = filter_var($_POST["city"], FILTER_SANITIZE_SPECIAL_CHARS);
-  $state = filter_var($_POST["state"], FILTER_SANITIZE_SPECIAL_CHARS);
-  $zipcode = filter_var($_POST["zipcode"], FILTER_SANITIZE_SPECIAL_CHARS);
+  // $str_address = filter_var($_POST["str_address"], FILTER_SANITIZE_SPECIAL_CHARS);
+  // $city = filter_var($_POST["city"], FILTER_SANITIZE_SPECIAL_CHARS);
+  // $state = filter_var($_POST["state"], FILTER_SANITIZE_SPECIAL_CHARS);
+  // $zipcode = filter_var($_POST["zipcode"], FILTER_SANITIZE_SPECIAL_CHARS);
   $confirm_password = filter_var($_POST["confirm_password"], FILTER_SANITIZE_SPECIAL_CHARS);
   $current_balance = filter_var($_POST["current_balance"], FILTER_SANITIZE_SPECIAL_CHARS);
   $savings_balance = filter_var($_POST["savings_balance"], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -139,7 +139,7 @@ if ( isset($_POST["add_account"]) ) {
         VALUES('$admin_id', '$firstname', '$lastname', '$email', '$phone',
         '$dob', '$gender',
         '$current_account', '$savings_account', '$savings_balance', '$current_balance',
-        '$str_address', '$city', '$state', '$zipcode', '$hashpwd', '$password')";
+        '', '', '', '', '$hashpwd', '$password')";
     $query = $conn->prepare($sql);
     try {
       $query->execute();
@@ -409,6 +409,19 @@ if ( isset($_POST['create_local_transaction']) ) {
     echo $e->getMessage();
   }
 }
+// delete transaction
+if ( isset($_GET['delete_transaction']) ) {
+  $trx_id = $_GET['delete_transaction'];
+  $sql = "DELETE FROM transactions  WHERE id = '$trx_id'";
+  $query = $conn->prepare($sql);
+  try {
+    $query->execute();
+    echo 'success';
+  } catch (PDOException $e) {
+    echo $e->getMessage();
+  }
+}
+
 
 // Approve deposit
 if ( isset($_GET['approve_deposit']) ) {

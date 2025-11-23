@@ -100,8 +100,7 @@
                   <input type="text"
                     name="phone" minlength="8"
                     autocomplete="off" placeholder="+1 213 218 5486"
-                    class="form-control wizard-required"
-                    required 
+                    class="form-control"
                   />
                 </div>
                 <div class="form-group">
@@ -113,38 +112,32 @@
                     <option value="Other">Other</option>
                   </select>
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Password</label>
-                  <input type="password" required name="password" class="form-control" placeholder="Password">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Confirm Password</label>
-                  <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
-                </div>
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Date of Birth</label>
-                  <input type="date" name="dob" class="form-control" placeholder="Date of birth" required>
+                  <input type="date" name="dob" class="form-control" placeholder="Date of birth" />
                 </div>
+                <!--
                 <div class="form-group">
                   <label for="exampleInputEmail1">Home Address</label>
-                  <input name="str_address" type="text" class="form-control" placeholder="Address" required>
+                  <input name="str_address" type="text" class="form-control" placeholder="Address" />
                 </div>
                 <div class="form-group">
                   <label>City</label>
-                  <input type="text" name="city" class="form-control" placeholder="Enter City" required>
+                  <input type="text" name="city" class="form-control" placeholder="Enter City" />
                 </div>
                 <div class="form-group">
                   <label>State</label>
-                  <input type="text" name="state" class="form-control" placeholder="Enter State" required>
+                  <input type="text" name="state" class="form-control" placeholder="Enter State" />
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Zipcode</label>
                   <input type="text" name="zipcode" inputmode="numeric" pattern="[0-9]+" minlength="3" maxlength="5" autocomplete="off" class="form-control" placeholder="23456" required>
                 </div>
+                -->
                 <div class="form-group">
                   <label for="exampleInputEmail1">Current Balance</label>
                   <input type="number"
@@ -175,6 +168,15 @@
                     placeholder="0.00" required 
                   />
                 </div> -->
+                
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Password</label>
+                  <input type="password" required name="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Confirm Password</label>
+                  <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
+                </div>
               </div>
               <!-- /.col -->
             </div>

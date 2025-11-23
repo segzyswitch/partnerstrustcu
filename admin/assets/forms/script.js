@@ -247,6 +247,28 @@ function deleteUser(id) {
     }
   });
 }
+// Delete user
+function deleteTransaction(id) {
+	event.preventDefault();
+  $.ajax({
+    url: "config/process.php",
+    type: "GET",
+    data: { 'delete_transaction': id },
+    beforeSend: function() {
+	    $("#deleteBtn"+id).html("<i class='fa fa-cog fa-spin'></i>");
+    },
+    success: function(data) {
+	    if ( data.search('success') !== -1 ) {
+	    	// window.location.reload();
+	    	$("#trxRow"+id).css('background-color', 'red');
+	    	$("#trxRow"+id).fadeOut();
+	    } else $("#deleteBtn"+id).html(data);
+    },
+    error: function() {
+	    $("#deleteBtn"+id).html("Error, try again");
+    }
+  });
+}
 
 // Update
 function updateStatus(id, status) {

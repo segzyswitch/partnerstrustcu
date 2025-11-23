@@ -41,6 +41,22 @@ class Authroller extends Controller
   }
 
   // Pending transactions
+  public function userTransactions($user_id) {
+    $sql = "SELECT * FROM transactions
+    WHERE user_id = '$user_id'
+    ORDER BY id DESC";
+
+    try {
+      $query = $this->conn->prepare($sql);
+      $query->execute();
+      $data = $query->fetchAll();
+      return $data;
+    } catch (PDOException $e) {
+      return $e->getMessage();
+    }
+  }
+
+  // Pending transactions
   public function pendingTransactions() {
     $sql = "SELECT * FROM deposits
     ORDER BY id DESC";

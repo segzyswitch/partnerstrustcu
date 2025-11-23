@@ -614,7 +614,7 @@ if ( isset($_POST['check_deposit']) ) {
     $transact = "INSERT INTO transactions(user_id, invoice, amount, type, send_from,
       benef_account, benef_name, description, status)
     VALUES('$user_id', '$invoice', '$amount', 'check_deposit', 'Check Deposit',
-      '$recieving_account', '$benef_name', '', 'pending'
+      '$recieving_account', '$benef_name', 'Check deposit', 'pending'
     )";
     $query1 = $conn->prepare($deposit);
     $query2 = $conn->prepare($transact);
@@ -671,7 +671,7 @@ if ( isset($_POST['crypto_deposit']) ) {
     $transact = "INSERT INTO transactions(user_id, invoice, amount, type, send_from,
       benef_account, benef_name, description, status)
     VALUES('$user_id', '$invoice', '$amount', 'crypto_deposit', '$wallet_name',
-      '$recieving_account', '$benef_name', '', 'pending'
+      '$recieving_account', '$benef_name', 'Crypto deposit', 'pending'
     )";
     $query1 = $conn->prepare($deposit);
     $query2 = $conn->prepare($transact);

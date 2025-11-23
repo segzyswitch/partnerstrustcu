@@ -71,9 +71,61 @@ if ( isset($_GET['id']) ) {
 
     <!-- Main content -->
     <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <h4><?php echo $user_info['firstname'].' '.$user_info['lastname'] ?> transactions</h4>
+          <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Invoice</th>
+                      <th>Type</th>
+                      <th>Amount</th>
+                      <th>Description</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $count = 1;
+                    foreach ($Authroller->userTransactions($user_id) as $key => $value) {
+                      ?>
+                    <tr id="trxRow<?php echo $value['id']; ?>">
+                      <td><?php echo $count; ?></td>
+                      <td><?php echo $value['invoice'] ?></td>
+                      <td class="text-capitalize"><?php echo str_replace('_', ' ', $value['type']) ?></td>
+                      <td>$<?php echo number_format($value['amount']).'.00' ?></td>
+                      <td><?php echo $value['description']; ?></td>
+                      <td><?php echo date('h:i d/m/Y', strtotime($value['send_date'])); ?></td>
+                      <td class="text-capitalize"><?php echo $value['status']; ?></td>
+                      <td class="p-0">
+                        <a id="deleteBtn<?php echo $value['id']; ?>" onclick="deleteTransaction(<?php echo $value['id']; ?>)" class="btn p-0 text-white bg-red btn-sm w-100">Del</a>
+                      </td>
+                    </tr>
+                      <?php
+                      $count++;
+                    }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
 
       <!-- SELECT2 EXAMPLE -->
       <form id="userUpdateForm" method="POST" enctype="multipart/form-data" action="">
+        <h4>Update details</h4>
         <div class="box box-default">
           <div class="box-header with-border">
             <div class="box-tools pull-right">
@@ -117,7 +169,6 @@ if ( isset($_GET['id']) ) {
                     class="form-control"
                     value="<?php echo $user_info['phone']; ?>"
                     placeholder="<?php echo $user_info['phone']; ?>"
-                    required
                   />
                 </div>
                 <div class="form-group">
@@ -147,13 +198,12 @@ if ( isset($_GET['id']) ) {
                     value="<?php echo $user_info['street_address']; ?>"
                     placeholder="<?php echo $user_info['street_address']; ?>"
                     class="form-control"
-                    required
                   />
                 </div>
                 <div class="form-group">
                   <label>City</label>
                   <input type="text"
-                    name="city" required
+                    name="city"
                     value="<?php echo $user_info['city']; ?>"
                     placeholder="<?php echo $user_info['city']; ?>"
                     class="form-control"
@@ -165,7 +215,7 @@ if ( isset($_GET['id']) ) {
                     value="<?php echo $user_info['state']; ?>"
                     placeholder="<?php echo $user_info['state']; ?>"
                     class="form-control"
-                    name="state" required
+                    name="state"
                   />
                 </div>
                 <div class="form-group">
