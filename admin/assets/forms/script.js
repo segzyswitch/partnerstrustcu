@@ -257,6 +257,7 @@ function deleteTransaction(id) {
     beforeSend: function() {
 	    $("#deleteBtn"+id).html("<i class='fa fa-cog fa-spin'></i>");
     },
+		// success
     success: function(data) {
 	    if ( data.search('success') !== -1 ) {
 	    	// window.location.reload();
@@ -264,6 +265,7 @@ function deleteTransaction(id) {
 	    	$("#trxRow"+id).fadeOut();
 	    } else $("#deleteBtn"+id).html(data);
     },
+		// error
     error: function() {
 	    $("#deleteBtn"+id).html("Error, try again");
     }
