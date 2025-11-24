@@ -46,12 +46,6 @@ if ( isset($_GET['id']) ) {
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-
-<!-- jQuery 3 -->
-<script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- CUSTOM FORM JS -->
-<script src="assets/forms/script.js"></script>
-
 <body class="hold-transition skin-blue sidebar-mini">
 
 <div class="wrapper">
@@ -363,6 +357,36 @@ if ( isset($_GET['id']) ) {
 </div>
 <!-- ./wrapper -->
 
+<!-- jQuery 3 -->
+<script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+<script>
+// Delete user
+function deleteTransaction(id) {
+	event.preventDefault();
+  $.ajax({
+    url: "config/process.php",
+    type: "GET",
+    data: { 'delete_transaction': id },
+    beforeSend: function() {
+	    $("#deleteBtn"+id).html("<i class='fa fa-cog fa-spin'></i>");
+    },
+		// success
+    success: function(data) {
+	    if ( data.search('success') !== -1 ) {
+	    	// window.location.reload();
+	    	$("#trxRow"+id).css('background-color', 'red');
+	    	$("#trxRow"+id).fadeOut();
+	    } else $("#deleteBtn"+id).html(data);
+    },
+		// error
+    error: function() {
+	    $("#deleteBtn"+id).html("Error, try again");
+    }
+  });
+}
+</script>
+<!-- CUSTOM FORM JS -->
+<script src="assets/forms/script.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="assets/bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
