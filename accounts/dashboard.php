@@ -254,11 +254,11 @@ $user_info = $Controller->User();
 						</div>
 						<div class="widget-content">
 							<?php
-							if ( count($Controller->Transactions(5)) < 1 ) {
+							if ( count($Controller->Transactions()) < 1 ) {
 								?><h6 class="text-center py-4">No transactions yet</h6><?php
 							}
 							$count = 1;
-							foreach ($Controller->Transactions() as $key => $value) {
+							foreach ($Controller->Transactions(5) as $key => $value) {
 								$type = '';
 								if ( $value['type'] == 'local' ) {
 									$type = "Transfer";
