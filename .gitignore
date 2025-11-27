@@ -1,1 +1,4 @@
 config/Controller.php
+accounts/error_log
+admin/error_log
+admin/config/error_log

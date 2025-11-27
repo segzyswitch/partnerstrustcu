@@ -254,7 +254,7 @@ $user_info = $Controller->User();
 						</div>
 						<div class="widget-content">
 							<?php
-							if ( count($Controller->Transactions(6)) < 1 ) {
+							if ( count($Controller->Transactions(5)) < 1 ) {
 								?><h6 class="text-center py-4">No transactions yet</h6><?php
 							}
 							$count = 1;
