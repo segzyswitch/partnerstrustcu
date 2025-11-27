@@ -83,9 +83,9 @@ class Controller
 
 
   // Transaction history
-  public function Transactions() {
+  public function Transactions($limit = 50) {
     $user_id = $_SESSION["ptcu_account_id"];
-    $sql = "SELECT * FROM transactions WHERE user_id = '$user_id' ORDER BY id DESC LIMIT 50";
+    $sql = "SELECT * FROM transactions WHERE user_id = '$user_id' ORDER BY id DESC LIMIT $limit";
     try {
       $query = $this->conn->prepare($sql);
       $query->execute();
